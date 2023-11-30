@@ -1,0 +1,120 @@
+import java.util.ArrayList;
+
+public class classname 
+{
+
+    public static void display(int[][] s) 
+    {
+        int m = s.length;
+        int n = s[0].length;
+        for (int i = 0; i < m; i++) 
+        {
+            for (int j = 0; j < n; j++) 
+            {
+                System.out.print(s[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public static int[][] toRow(int[][] s) 
+    {
+        int size = 0;
+        int m = s.length;
+        int n = s[0].length;
+        for (int i = 0; i < m; i++) 
+        {
+            for (int j = 0; j < n; j++) 
+            {
+                if (s[i][j] != 0) 
+                {
+                    size++;
+                }
+            }
+        }
+        int ans[][] = new int[3][size];
+        int k = 0;
+        for (int i = 0; i < m; i++) 
+        {
+            for (int j = 0; j < n; j++) 
+            {
+                if (s[i][j] != 0) 
+                {
+                    ans[0][k] = i;
+                    ans[1][k] = j;
+                    ans[2][k] = s[i][j];
+                    k++;
+                }
+            }
+        }
+        return ans;
+    }
+
+
+    public static void main(String args[]) 
+    {
+        int s1[][] = new int[][] { { 0, 0, 3, 0, 4 }, { 0, 0, 5, 7, 0 }, { 0, 0, 0, 0, 0 }, { 0, 2, 6, 0, 1 } };
+        int s2[][] = new int[][] { { 0, 0, 2, 0, 1 }, { 0, 0, 5, 7, 5 }, { 0, 0, 0, 0, 0 }, { 0, 3, 6, 0, 0 } };
+
+        int r1[][] = toRow(s1);
+        int r2[][] = toRow(s2);
+
+        ArrayList<Integer> resList = new ArrayList<>();
+        int i = 0, j = 0;
+
+        while (i < r1[0].length && j < r2[0].length) 
+        {
+            if (r1[0][i] < r2[0][j] || (r1[0][i] == r2[0][j] && r1[1][i] < r2[1][j])) 
+            {
+                resList.add(r1[0][i]);
+                resList.add(r1[1][i]);
+                resList.add(r1[2][i]);
+                i++;
+            } 
+            else if (r1[0][i] > r2[0][j] || (r1[0][i] == r2[0][j] && r1[1][i] > r2[1][j])) 
+            {
+                resList.add(r2[0][j]);
+                resList.add(r2[1][j]);
+                resList.add(r2[2][j]);
+                j++;
+            } 
+            else 
+            {
+                resList.add(r1[0][i]);
+                resList.add(r1[1][i]);
+                resList.add(r1[2][i] + r2[2][j]);
+                i++;
+                j++;
+            }
+        }
+
+        while (i < r1[0].length)
+         {
+            resList.add(r1[0][i]);
+            resList.add(r1[1][i]);
+            resList.add(r1[2][i]);
+            i++;
+        }
+
+        while (j < r2[0].length)
+        {
+            resList.add(r2[0][j]);
+            resList.add(r2[1][j]);
+            resList.add(r2[2][j]);
+            j++;
+        }
+
+        int res[][] = new int[3][resList.size() / 3];
+        int index = 0;
+        for (i = 0; i < resList.size() / 3; i++)
+        {
+            for (j = 0; j < 3; j++) 
+            {
+                res[j][i] = resList.get(index);
+                index++;
+            }
+        }
+
+        display(res);
+    }
+}
