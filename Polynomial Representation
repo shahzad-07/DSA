@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+class classname
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of elements : ");
+        int n = sc.nextInt();
+
+        int coeff[] = new int[n];
+        int expo[] = new int[n];
+
+        System.out.println("Enter Coefficients and Exponents : ");
+        for(int i=0; i<n; i++)
+        {
+            coeff[i] = sc.nextInt();
+            expo[i] = sc.nextInt();    
+        }
+
+        System.out.println("Displaying");
+
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<coeff.length; i++)
+        {
+            sb.append(coeff[i]);
+            if(expo[i] != 0)
+            {
+                sb.append("x^").append(expo[i]);
+            }
+            if(i != coeff.length-1)
+            {
+                sb.append(" + ");
+            }
+        }
+
+        System.out.println(sb.toString());
+    }
+}
