@@ -1,0 +1,70 @@
+import java.util.Arrays;
+
+class classname
+{
+    public static void findingelement(int a[][])
+    {
+        int row = a.length;
+        int col = a[0].length;
+
+        for(int i=0; i<col; i++)
+        {
+            int ele = a[0][i];
+            boolean found = true;
+
+            for(int j=1; j<row; j++)
+            {
+                if(!binary(a[j], ele))
+                {
+                    found = false;
+                    break;
+                }
+            }
+            if(found)
+            {
+                System.out.println("Element is : "+ ele);
+                return;
+            }
+        }
+        System.out.println("Not found");
+    }
+
+    public static boolean binary(int a[], int target)
+    {
+        int left = 0;
+        int right = a.length-1;
+        while (left <= right)
+        {
+            int mid = left + (right-left)/2;
+            if(a[mid] == target)
+            {
+                return true;
+            }
+            else if(target < a[mid])
+            {
+                right = mid-1;
+            }
+            else
+            {
+                left = mid+1;
+            }
+        }
+        return false;
+    }
+
+    public static void main(String args[])
+    {
+        int a[][] = new int[][] {
+            {1, 2, 3, 4},
+            {2, 3, 7, 8},
+            {3, 6, 9, 10}
+        };
+
+        for(int[] rows : a)
+        {
+            System.out.println(Arrays.toString(rows));
+        }
+
+        findingelement(a);
+    }
+}
