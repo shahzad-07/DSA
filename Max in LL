@@ -1,0 +1,30 @@
+import java.util.*;
+
+class classname
+{
+    public static void main(String args[])
+    {
+        LinkedList<Integer> ll = new LinkedList<>();
+
+        ll.add(32);
+        ll.add(12);
+        ll.add(63);
+
+        ll.addFirst(10);
+        ll.addLast(100);
+
+        System.out.println(ll);
+
+        int max = ll.getFirst();
+        for(int i=0; i<ll.size(); i++)
+        {
+            if(ll.get(i) > max)
+            {
+                max = ll.get(i);
+            }
+        }
+        System.out.println(max);
+
+        System.out.println(ll);
+    }
+}
