@@ -1,0 +1,55 @@
+import java.util.*;
+
+class classname
+{
+    public static boolean check(LinkedList<Integer> ll)
+    {
+        for(int i=1; i<ll.size(); i++)
+        {
+            if(ll.get(i-1) > ll.get(i))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean sortcheck(LinkedList<Integer> ll)
+    {
+        LinkedList<Integer> bb = new LinkedList<>();
+        for(int i=0; i<ll.size(); i++)
+        {
+            bb.add(ll.get(i));
+        }
+        Collections.sort(bb);
+        for(int i=0; i<ll.size(); i++)
+        {
+            if(ll.get(i) != bb.get(i))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String args[])
+    {
+        LinkedList<Integer> ll = new LinkedList<>();
+
+        ll.add(32);
+        ll.add(12);
+        ll.add(63);
+
+        ll.addFirst(10);
+        ll.addLast(100);
+
+        ll.add(3, 33);
+
+        //Collections.sort(ll);
+
+        System.out.println(check(ll));
+        System.out.println(sortcheck(ll));
+
+        System.out.println(ll);
+    }
+}
