@@ -1,0 +1,33 @@
+import java.util.*;
+
+class classname
+{
+    public static void main(String args[])
+    {
+        LinkedList<Integer> ll = new LinkedList<>();
+
+        ll.add(32);
+        ll.add(12);
+        ll.add(63);
+
+        ll.addFirst(10);
+        ll.addLast(100);
+
+        ll.add(3, 33);
+
+        Collections.sort(ll);
+
+        int ele = 54;
+
+        for(int i=0; i<ll.size(); i++)
+        {
+            if(ll.get(i) >= ele)
+            {
+                ll.add(i, ele);
+                break;
+            }
+        }
+
+        System.out.println(ll);
+    }
+}
