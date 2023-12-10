@@ -21,17 +21,26 @@ class classname
         cl.add(pos, val);
     }
 
+    public static void delete(LinkedList<Integer> cl, int pos)
+    {
+        cl.remove(pos);
+    }
+
     public static void main(String args[])
     {
         LinkedList<Integer> cl = new LinkedList<>();
 
         cl.add(1);
         cl.add(2);
-        cl.add(4);
+        cl.add(3);
         cl.add(5);
+        cl.add(6);
+
+        cl.addFirst(cl.getLast());
 
         display(cl);
-        insert(cl, 4, 3);
+        insert(cl, 3, 4);
+        delete(cl, 5);
         display(cl);
     }
 }
