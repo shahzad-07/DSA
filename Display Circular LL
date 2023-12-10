@@ -64,3 +64,48 @@ class classname
         cl1.display();
     }
 }
+
+
+
+/*
+import java.util.*;
+
+class classname
+{
+    public static void display(LinkedList<Integer> cl)
+    {
+        if(cl.isEmpty())
+        {
+            System.out.println("Empty");
+            return;
+        }
+
+        int size = cl.size();
+        int index = 0;
+
+        for(int i=0; i<size; i++)
+        {
+            System.out.print(cl.get(i) + "  ");
+            index++;
+            if(index == size)
+            {
+                break;
+            }
+        }
+    }
+
+    public static void main(String args[])
+    {
+        LinkedList<Integer> cl = new LinkedList<>();
+
+        cl.add(1);
+        cl.add(2);
+        cl.add(3);
+        cl.add(4);
+
+        cl.addFirst(cl.getLast());
+
+        display(cl);
+    }
+}
+*/
