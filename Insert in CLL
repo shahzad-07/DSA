@@ -1,0 +1,37 @@
+import java.util.*;
+
+class classname
+{
+    public static void display(LinkedList<Integer> cl)
+    {
+        if(cl.isEmpty())
+        {
+            System.out.println("Empty");
+            return;
+        }
+        for(int i: cl)
+        {
+            System.out.print(i + "   ");
+        }
+        System.out.println();
+    }
+
+    public static void insert(LinkedList<Integer> cl, int pos, int val)
+    {
+        cl.add(pos, val);
+    }
+
+    public static void main(String args[])
+    {
+        LinkedList<Integer> cl = new LinkedList<>();
+
+        cl.add(1);
+        cl.add(2);
+        cl.add(4);
+        cl.add(5);
+
+        display(cl);
+        insert(cl, 4, 3);
+        display(cl);
+    }
+}
