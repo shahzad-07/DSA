@@ -1,0 +1,66 @@
+import java.util.*;
+
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class classname
+{
+    private Node tail;
+    private Node head;
+
+    public void addtoEmpty(int data)
+    {
+        Node newNode = new Node(data);
+        head = newNode;
+        tail = newNode;
+        tail.next = head;
+    }
+
+    public void addToEnd(int data)
+    {
+        if(head == null)
+        {
+            addtoEmpty(data);
+            return;
+        }
+        Node newNode = new Node(data);
+        tail.next = newNode;
+        tail = newNode;
+        tail.next = head;   
+    }
+
+    public void display()
+    {
+        if(head == null)
+        {
+            System.out.println("Empty");
+            return;
+        }
+        Node current = head;
+        do
+        {
+            System.out.print(current.data + "   ");
+            current = current.next;
+        }while(current != head);
+    }
+
+    public static void main(String args[])
+    {
+        classname cl1 = new classname();
+        
+        cl1.addToEnd(1);
+        cl1.addToEnd(2);
+        cl1.addToEnd(3);
+        cl1.addToEnd(4);
+
+        cl1.display();
+    }
+}
