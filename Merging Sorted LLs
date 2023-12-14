@@ -1,0 +1,86 @@
+class classname
+{
+    public static class Node
+    {
+        int val;
+        Node next;
+
+        Node()
+        {}
+
+        Node(int val)
+        {
+            this.val = val;
+        }
+
+        Node(int val, Node next)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        Node lone3 = new Node(6);
+        Node lone2 = new Node(4, lone3);
+        Node lone1 = new Node(2, lone2);
+
+        Node ltwo3 = new Node(5);
+        Node ltwo2 = new Node(3, ltwo3);
+        Node ltwo1 = new Node(1, ltwo2);
+
+        Node sor = merging(lone1, ltwo1);
+        printing(sor);
+    }
+
+    public static Node merging(Node one, Node two)
+    { 
+        Node cur = new Node();
+        Node temp = cur;
+
+        if(one==null) return two;
+        if(two==null) return one;
+
+        while(one != null && two != null)
+        {
+            if(one.val <= two.val)
+            {
+                cur.next = one;
+                one = one.next;
+                cur = cur.next;
+            }
+            else
+            {
+                cur.next = two;
+                two = two.next;
+                cur = cur.next;
+            }
+        }
+
+        while(one != null)
+        {
+            cur.next = one;
+            one = one.next;
+            cur = cur.next;
+        }
+        while(two != null)
+        {
+            cur.next = two;
+            two = two.next;
+            cur = cur.next;
+        }
+
+        return temp.next;
+    }
+    
+    public static void printing(Node head)
+    {
+        Node current = head;
+        while(current != null)
+        {
+            System.out.print(current.val + "    ");
+            current = current.next;
+        }
+    }
+}
