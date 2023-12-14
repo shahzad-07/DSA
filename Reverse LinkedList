@@ -1,0 +1,67 @@
+class classname
+{
+    static class ListNode
+    {
+        int val;
+        ListNode next;
+
+        ListNode()
+        {
+        }
+
+        ListNode(int val)
+        {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public static void main(String args[])
+    {
+        ListNode node5 = new ListNode(5);
+        ListNode node4 = new ListNode(4, node5);
+        ListNode node3 = new ListNode(3, node4);
+        ListNode node2 = new ListNode(2, node3);
+        ListNode node1 = new ListNode(1, node2);
+
+        System.out.print("Print Original Value : ");
+        printlist(node1);
+
+        System.out.println();
+
+        System.out.print("Print Reversed Value : ");
+        ListNode reverse = reverselist(node1);
+        printlist(reverse);
+    }
+
+    public static ListNode reverselist(ListNode head)
+    {
+        ListNode temp = null;
+        ListNode prev = null;
+        ListNode cur = head;
+
+        while(cur != null)
+        {
+            temp = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = temp;
+        }
+        return prev;
+    }
+
+    public static void printlist(ListNode head)
+    {
+        ListNode current = head;
+        while(current != null)
+        {
+            System.out.print(current.val + "    ");
+            current = current.next;
+        }
+    }
+}
