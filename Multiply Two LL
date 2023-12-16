@@ -1,0 +1,65 @@
+class classname
+{
+    public static class lnode
+    {
+        int val;
+        lnode next;
+
+        lnode() {};
+        lnode(int val)
+        {
+            this.val = val;
+        }
+        lnode(int val, lnode next)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public static void main(String args[])
+    {
+        lnode lone3 = new lnode(6);
+        lnode lone2 = new lnode(4, lone3);
+        lnode lone1 = new lnode(9, lone2);
+
+        lnode ltwo2 = new lnode(4);
+        lnode ltwo1 = new lnode(8, ltwo2);
+
+        printing(lone1);
+        String s1 = joining(lone1);
+        System.out.println();
+        printing(ltwo1);
+        String s2 = joining(ltwo1);
+        System.out.println();
+
+        int sum1 = Integer.parseInt(s1);
+        int sum2 = Integer.parseInt(s2);
+
+        int mul = sum1*sum2;
+        System.out.println(mul);
+    }
+
+    public static String joining(lnode head)
+    {
+        lnode cur = head;
+        StringBuilder sb = new StringBuilder();
+        while(cur != null)
+        {
+            sb.append(cur.val);
+            cur = cur.next;
+        }
+        return sb.toString();
+    }
+
+    public static void printing(lnode head)
+    {
+        lnode cur = head;
+
+        while(cur != null)
+        {
+            System.out.print(cur.val + "    ");
+            cur = cur.next;
+        }
+    }
+}
