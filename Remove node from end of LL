@@ -1,0 +1,94 @@
+import javax.naming.NoPermissionException;
+
+class classname
+{
+    public static class Node
+    {
+        int val;
+        Node next;
+
+        Node(){}
+        Node(int val)
+        {
+            this.val = val;
+        }
+        Node(int val, Node next)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public static void main(String args[])
+    {
+        Node n5 = new Node(5);
+        Node n4 = new Node(4, n5);
+        Node n3 = new Node(3, n4);
+        Node n2 = new Node(2, n3);
+        Node n1 = new Node(1, n2);
+
+        int n = 2;
+
+        int s = sizing(n1);
+        printing(n1);
+
+        int r = s-n+1;
+        System.out.println();
+        n1 = removing(n1, r);
+        printing(n1);
+    }
+
+    public static int sizing(Node head)
+    {
+        Node cur = head;
+        int count = 0;
+        while(cur != null)
+        {
+            cur = cur.next;
+            count ++;
+        }
+        return count;
+    }
+
+    public static void printing(Node head)
+    {
+        Node cur = head;
+        while(cur != null)
+        {
+            System.out.print(cur.val + "  ");
+            cur = cur.next;
+        }
+    }
+
+    public static Node removing(Node head, int n)
+    {
+        if(head == null)
+        {
+            return null;
+        }
+        if(n == 1)
+        {
+            return head.next;
+        }
+
+        Node prev = null;
+        Node cur = head;
+        int i = 1;
+
+        while(cur != null)
+        {
+            if(i == n)
+            {
+                if(prev != null)
+                {
+                    prev.next = cur.next;
+                    break;
+                }
+            }
+            prev = cur;
+            cur = cur.next;
+            i++;
+        }
+        return head;
+    }
+}
