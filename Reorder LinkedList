@@ -1,0 +1,111 @@
+class classname
+{
+    public static class Node
+    {
+        int val;
+        Node next;
+        Node(){}
+        Node(int val)
+        {
+            this.val = val;
+        }
+        Node(int val, Node next)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public static void main(String args[])
+    {
+        Node n5 = new Node(5);
+        Node n4 = new Node(4, n5);
+        Node n3 = new Node(3, n4);
+        Node n2 = new Node(2, n3);
+        Node n1 = new Node(1, n2);
+
+        printing(n1);
+
+        Node cu = n1;
+        Node fast = cu;
+        Node slow = cu;
+        Node tem = cu;
+        while(fast != null && fast.next != null)
+        {
+            tem = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        System.out.println();
+        System.out.println(tem.next.val);
+
+        Node l1 = n1;
+        Node l2 = tem.next;
+        tem.next = null;
+
+        printing(l1);
+        System.out.println();
+        printing(l2);
+
+        l2 = reversing(l2);
+        System.out.println();
+        printing(l2);
+
+        Node fin = merging(l1, l2);
+        System.out.println();
+        printing(fin);
+    }
+
+    public static Node merging(Node fir, Node sec)
+    {
+        Node dummy = new Node();
+        Node current = dummy;
+
+        while(fir != null && sec != null)
+        {
+            current.next = fir;
+            fir = fir.next;
+            current = current.next;
+
+            current.next = sec;
+            sec = sec.next;
+            current = current.next;
+        }
+
+        if(fir != null)
+        {
+            current.next = fir;
+        }
+        else
+        {
+            current.next = sec;
+        }
+        
+        return dummy.next;
+    }
+
+    public static Node reversing(Node head)
+    {
+        Node prev = null;
+        Node next = null;
+        Node curr = head;
+        while(curr != null)
+        {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    public static void printing(Node head)
+    {
+        Node cur = head;
+        while(cur != null)
+        {
+            System.out.print(cur.val + "    ");
+            cur = cur.next;
+        }
+    }
+}
