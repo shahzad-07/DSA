@@ -1,0 +1,101 @@
+import java.util.*;
+
+class classname
+{
+    static class stack
+    {
+        private int maxsize;
+        private int sarr[];
+        private int top;
+
+        stack(int size)
+        {
+            this.maxsize = size;
+            this.sarr = new int[maxsize];
+            this.top = -1;
+        }
+
+        public boolean isempty()
+        {
+            return (top == -1)? true: false;
+        }
+
+        public boolean isfull()
+        {
+            return (top == maxsize-1)? true: false;
+        }
+
+        public void push(int element)
+        {
+            if(isfull())
+            {
+                System.out.println("Stack is full. Cannot push element.");
+                return;
+            }
+            top++;
+            sarr[top] = element;
+        }
+
+        public int pop()
+        {
+            int x = -1;
+            if(isempty())
+            {
+                System.out.println("Stack is empty. Cannot pop element.");
+                return x;
+            }
+            x = sarr[top];
+            System.out.println("Popped element is : " + x);
+            sarr[top] = 0;
+            top--;
+            return x;
+        }
+
+        public void display()
+        {
+            if(isempty())
+            {
+                System.out.println("Stack is Empty");
+                return;
+            }
+            for(int i=top; i>=0; i--)
+            {
+                System.out.print(sarr[i] + "  ");
+            }
+            System.out.println();
+        }
+
+        public int peek(int pos)
+        {
+            int x = -1;
+            if(isempty() || pos < 0 || pos > maxsize)
+            {
+                System.out.println("Invalid position");
+                return x;
+            }
+            x = sarr[top-pos+1];
+            System.out.println("Value at position is : " + x);
+            return x;
+        }
+    }
+
+    public static void main(String args[])
+    {
+        stack st = new stack(10);
+
+        st.push(10);
+        st.push(20);
+        st.push(30);
+        st.push(40);
+        st.push(50);
+
+        st.pop();
+
+        st.display();
+
+        st.peek(0);
+
+        st.isempty();
+        st.isfull();
+    }
+}
