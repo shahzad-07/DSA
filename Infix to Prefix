@@ -1,0 +1,73 @@
+import java.util.*;
+
+class classname
+{
+    public static int precedence(char x)
+    {
+        switch(x)
+        {
+            case '^' : return 3;
+            case '*' :
+            case '/' : return 2;
+            case '+' :
+            case '-' : return 1;
+        }
+        return -1;
+    }
+
+    public static String intopos(String s)
+    {
+        Stack<Character> st = new Stack<>();
+
+        String res = "";
+
+        for(int i=0; i<s.length(); i++)
+        {
+            char x = s.charAt(i);
+
+            if(x == '(')
+            {
+                st.push(x);
+            }
+            else if(precedence(x) > 0)
+            {
+                while(st.isEmpty()==false && precedence(st.peek()) >= precedence(x))
+                {
+                    res += st.pop();
+                }
+                st.push(x);
+            }
+            else if(x == ')')
+            {
+                while(!st.isEmpty() && st.peek() != '(')
+                {
+                    res += st.pop();
+                }
+                st.pop();
+            }
+            else
+            {
+                res += x;
+            }
+        }
+
+        while(!st.isEmpty())
+        {
+            res += st.pop();
+        }
+
+        return res;
+    }
+
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Write Expression : ");
+        String infix = sc.nextLine();
+        System.out.println("Infix is : " + infix);
+        System.out.println("Postfix is : " + intopos(infix));
+
+        sc.close();
+    }
+}
