@@ -1,0 +1,119 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+class classname
+{
+	static Scanner sc =  null;
+	public static void main(String args[])
+	{
+		Node root = createTree();
+
+		inorder(root);
+		System.out.println();
+		preorder(root);
+		System.out.println();
+		postorder(root);
+
+		System.out.println();
+		
+		levelorder(root);
+	}
+
+	public static Node createTree()
+	{
+		sc = new Scanner(System.in);
+
+		Node root = null;
+
+		System.out.println("Enter data : ");
+		int data = sc.nextInt();
+
+		if(data == -1) return null;
+
+		root = new Node(data);
+
+		System.out.println("Enter Left of " + data);
+		root.left = createTree();
+
+		System.out.println("Enter Right of " + data);
+		root.right = createTree();
+
+		return root;
+	}
+
+//start
+	public static void levelorder(Node root)
+	{
+		if(root == null)
+		{
+			System.out.println("Empty");
+			return;
+		}
+
+		Queue<Node> queue = new LinkedList<>();
+		queue.offer(root);
+
+		System.out.println("Level Order Taversal");
+
+		while(!queue.isEmpty())
+		{
+			int levelsize = queue.size();
+			for(int i=0; i<levelsize; i++)
+			{
+				Node current = queue.poll();
+				System.out.print(current.data + "	");
+
+				if(current.left != null)
+				{
+					queue.offer(current.left);
+				}
+				if(current.right != null)
+				{
+					queue.offer(current.right);
+				}
+			}
+			System.out.println();
+		}
+	}
+//end
+
+	static void inorder(Node root)
+	{
+		if(root == null) return;
+
+		inorder(root.left);
+		System.out.print(root.data + "	");
+		inorder(root.right);
+	}
+
+	static void preorder(Node root)
+	{
+		if(root == null) return;
+
+		System.out.print(root.data + "	");
+		preorder(root.left);
+		preorder(root.right);
+	}
+
+	static void postorder(Node root)
+	{
+		if(root == null) return;
+
+		postorder(root.left);
+		postorder(root.right);
+		System.out.print(root.data + "	");
+	}
+}
+
+class Node
+{
+	Node left;
+	int data;
+	Node right;
+
+	public Node(int data)
+	{
+		this.data = data;
+	}
+}
