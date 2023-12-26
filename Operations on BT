@@ -3,7 +3,8 @@ import java.util.Scanner;
 class Node
 {
 	int data;
-	Node left, right;
+	Node left;
+	Node right;
 
 	public Node(int data)
 	{
@@ -13,31 +14,33 @@ class Node
 
 class classname
 {
+	static Scanner sc = null;
 	public static void main(String args[])
 	{
+		sc = new Scanner(System.in);
+
 		Node root = createTree();
 		preorder(root);
-		//count(root);
-		//leafnode(root);
-		//nonleafnode(root);
+		System.out.println(count(root));
+		System.out.println(sum(root));
+		System.out.println(height(root));
+		System.out.println(leaf(root));
+		System.out.println(nonleaf(root));
 	}
 
 	public static Node createTree()
 	{
-		Scanner sc = new Scanner(System.in);
-
 		Node root = null;
 
-		System.out.println("Enter data : ");
+		System.out.println("Enter Value : ");
 		int data = sc.nextInt();
 
 		if(data == -1) return null;
 
 		root = new Node(data);
-
-		System.out.println("Enter Left of : "+ data);
+		System.out.println("Enter left of : " + data);
 		root.left = createTree();
-		System.out.println("Enter Right of :"+ data);
+		System.out.println("Enter right of : " + data);
 		root.right = createTree();
 
 		return root;
@@ -45,26 +48,49 @@ class classname
 
 	public static void preorder(Node root)
 	{
-		if(root == null) return;
-
-		System.out.print(root.data + "	");
+		if(root == null)
+		{
+			return;
+		}
+		System.out.println(root.data + "	");
 		preorder(root.left);
 		preorder(root.right);
 	}
 
 	public static int count(Node root)
 	{
-		if(root == null) return 0;
-
+		if(root == null)
+		{
+			return 0;
+		}
 		int x = count(root.left);
 		int y = count(root.right);
-
-		//return x+y+1;		//returns number of nodes
-		//return x+y+root.data;		//returns sum of all nodes
-		//int height = Math.max(x, y)+1; 	//returns height of a tree 
+		return x+y+1;
 	}
 
-	public static int leafnode(Node root)
+	public static int sum(Node root)
+	{
+		if(root == null)
+		{
+			return 0;
+		}
+		int x = count(root.left);
+		int y = count(root.right);
+		return x+y+root.data;
+	}
+
+	public static int height(Node root)
+	{
+		if(root == null)
+		{
+			return 0;
+		}
+		int x = count(root.left);
+		int y = count(root.right);
+		return Math.max(x, y) + 1;
+	}
+
+	public static int leaf(Node root)
 	{
 		if(root == null)
 		{
@@ -76,13 +102,13 @@ class classname
 		}
 		else
 		{
-			int x = count(root.left);
-			int y = count(root.right);
+			int x = leaf(root.left);
+			int y = leaf(root.right);
 			return x+y;
 		}
 	}
 
-	public static int nonleafnode(Node root)
+	public static int nonleaf(Node root)
 	{
 		if(root == null || (root.left == null && root.right == null))
 		{
@@ -90,8 +116,8 @@ class classname
 		}
 		else
 		{
-			int x = nonleafnode(root.left);
-			int y = nonleafnode(root.right);
+			int x = nonleaf(root.left);
+			int y = nonleaf(root.right);
 			return x+y+1;
 		}
 	}
