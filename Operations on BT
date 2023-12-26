@@ -1,0 +1,98 @@
+import java.util.Scanner;
+
+class Node
+{
+	int data;
+	Node left, right;
+
+	public Node(int data)
+	{
+		this.data = data;
+	}
+}
+
+class classname
+{
+	public static void main(String args[])
+	{
+		Node root = createTree();
+		preorder(root);
+		//count(root);
+		//leafnode(root);
+		//nonleafnode(root);
+	}
+
+	public static Node createTree()
+	{
+		Scanner sc = new Scanner(System.in);
+
+		Node root = null;
+
+		System.out.println("Enter data : ");
+		int data = sc.nextInt();
+
+		if(data == -1) return null;
+
+		root = new Node(data);
+
+		System.out.println("Enter Left of : "+ data);
+		root.left = createTree();
+		System.out.println("Enter Right of :"+ data);
+		root.right = createTree();
+
+		return root;
+	}
+
+	public static void preorder(Node root)
+	{
+		if(root == null) return;
+
+		System.out.print(root.data + "	");
+		preorder(root.left);
+		preorder(root.right);
+	}
+
+	public static int count(Node root)
+	{
+		if(root == null) return 0;
+
+		int x = count(root.left);
+		int y = count(root.right);
+
+		//return x+y+1;		//returns number of nodes
+		//return x+y+root.data;		//returns sum of all nodes
+		//int height = Math.max(x, y)+1; 	//returns height of a tree 
+	}
+
+	public static int leafnode(Node root)
+	{
+		if(root == null)
+		{
+			return 0;
+		}
+		else if(root.left == null && root.right == null)
+		{
+			return 1;
+		}
+		else
+		{
+			int x = count(root.left);
+			int y = count(root.right);
+			return x+y;
+		}
+	}
+
+	public static int nonleafnode(Node root)
+	{
+		if(root == null || (root.left == null && root.right == null))
+		{
+			return 0;
+		}
+		else
+		{
+			int x = nonleafnode(root.left);
+			int y = nonleafnode(root.right);
+			return x+y+1;
+		}
+	}
+}
