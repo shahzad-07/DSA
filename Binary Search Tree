@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+class Node
+{
+	int data;
+	Node left;
+	Node right;
+
+	public Node(int data)
+	{
+		this.data = data;
+	}
+}
+
+class classname
+{
+	static Scanner sc = null;
+	public static void main(String args[])
+	{
+		sc = new Scanner(System.in);
+		
+		Node root = createtree();
+		inorder(root);
+		System.out.println();
+
+		System.out.print("Enter key : ");
+		int key = sc.nextInt();
+		System.out.println(bstrec(root, key));
+		System.out.println(bstite(root, key));
+	}
+
+	public static Node createtree()
+	{
+		Node root = null;
+
+		sc = new Scanner(System.in);
+
+		System.out.println("Enter Value : ");
+		int data = sc.nextInt();
+
+		if(data == -1) return null;
+
+		root = new Node(data);
+
+		System.out.println("Enter left of : " + data);
+		root.left = createtree();
+		
+		System.out.println("Enter right of data : " + data);
+		root.right = createtree();
+
+		return root;
+	}
+
+	public static void inorder(Node root)
+	{
+		if(root == null)
+		{
+			return;
+		}
+		inorder(root.left);
+		System.out.print(root.data + "	");
+		inorder(root.right);
+	}
+
+	public static Node bstrec(Node root, int key)
+	{
+		if(root == null)
+		{
+			return null;
+		}
+		if(key == root.data)
+		{
+			return root;
+		}
+		else if(key < root.data)
+		{
+			return bstrec(root.left, key);
+		}
+		else
+		{
+			return bstrec(root.right, key);
+		}
+	}
+
+	public static Node bstite(Node root, int key)
+	{
+		while(root != null)
+		{
+			if(key == root.data)
+			{
+				return root;
+			}
+			else if(key < root.data)
+			{
+				root = root.left;
+			}
+			else
+			{
+				root = root.right;
+			}
+		}
+		return null;
+	}
+}
