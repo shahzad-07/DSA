@@ -1,0 +1,64 @@
+class Node
+{
+	int data;
+	Node left;
+	Node right;
+
+	public Node(int data)
+	{
+		this.data = data;
+	}
+}
+
+class classname
+{
+	public static Node root;
+
+	public static void insert(int key)
+	{
+		root = insbst(root, key);
+	}
+
+	public static Node insbst(Node root, int key)
+	{
+		if(root == null)
+		{
+			root = new Node(key);
+			return root;
+		}
+
+		if(key < root.data)
+		{
+			root.left = insbst(root.left, key);
+		}
+		else if(key > root.data)
+		{
+			root.right = insbst(root.right, key);
+		}
+
+		return root;
+	}
+
+	public static void inorder(Node root)
+	{
+		if(root != null)
+		{
+			inorder(root.left);
+			System.out.print(root.data + "	");
+			inorder(root.right);
+		}
+	}
+
+	public static void main(String args[])
+	{
+		insert(50);
+		insert(30);
+		insert(560);
+		insert(40);
+		insert(80);
+		insert(110);
+
+		System.out.println("Inorder Traversal is :");
+		inorder(root);
+	}
+}
