@@ -1,0 +1,119 @@
+class Node
+{
+	int data;
+	Node left;
+	Node right;
+
+	public Node(int data)
+	{
+		this.data = data;
+	}
+}
+
+class classname
+{
+	public Node root;
+
+	public void insert(int key)
+	{
+		root = insbst(root, key);
+	}
+
+	public Node insbst(Node root, int key)
+	{
+		if(root == null)
+		{
+			root = new Node(key);
+			return root;
+		}
+
+		if(key < root.data)
+		{
+			root.left = insbst(root.left, key);
+		}
+		else if(key > root.data)
+		{
+			root.right = insbst(root.right, key);
+		}
+
+		return root;
+	}
+
+	public void inorder(Node root)
+	{
+		if(root != null)
+		{
+			inorder(root.left);
+			System.out.print(root.data + "	");
+			inorder(root.right);
+		}
+	}
+
+	public Node delNode(Node root, int key)
+	{
+		if(root == null)
+		{
+			return root;
+		}
+
+		if(key < root.data)
+		{
+			root.left = delNode(root.left, key);
+		}
+		else if(key > root.data)
+		{
+			root.right = delNode(root.right, key);
+		}
+		else
+		{
+			if(root.left == null)
+			{
+				return root.right;
+			}
+			else if(root.right == null)
+			{
+				return root.left;
+			}
+
+			root.data = minVal(root.right);
+
+			root.right = delNode(root.right, root.data);
+		}
+
+		return root;
+	}
+
+	public int minVal(Node root)
+	{
+		int minVal = root.data;
+
+		while(root.left != null)
+		{
+			minVal = root.left.data;
+			root = root.left;
+		}
+		return minVal;
+	}
+
+	public static void main(String args[])
+	{
+		classname bst = new classname();
+
+		bst.insert(50);
+		bst.insert(30);
+		bst.insert(80);
+		bst.insert(70);
+		bst.insert(90);
+		bst.insert(10);
+
+		System.out.println("Inorder Traversal before delete : ");
+		bst.inorder(bst.root);
+
+		int todel = 50;
+		bst.root = bst.delNode(bst.root, todel);
+
+		System.out.println();
+		System.out.println("Inorder Traversal after delete : ");
+		bst.inorder(bst.root);
+	}
+}
