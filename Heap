@@ -62,7 +62,7 @@ class classname
         }
         System.out.println();
 
-        for(int i=7; i>1; i--)
+        for(int i=a.length; i>1; i--)
         {
             delete(a, i);
         }
