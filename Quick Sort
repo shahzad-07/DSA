@@ -1,0 +1,61 @@
+import java.util.*;
+
+class classname
+{
+    public static void main(String args[])
+    {
+        int a[] = {3, 8, 5, 73, 21, 2, 9};
+
+        System.out.print("Before Sort : ");
+        for(int x: a)
+            System.out.print(x + "  ");
+
+        int n = a.length;
+        quick(a, 0, n-1);
+
+        System.out.println();
+        System.out.print("After Sort : ");
+        for(int x: a)
+            System.out.print(x + "  ");
+    }
+
+    public static void quick(int array[], int i, int j)
+    {
+        if(i < j)
+        {
+            int parIndex = partition(array, i ,j);
+
+            quick(array, i, parIndex-1);
+            quick(array, parIndex+1, j);
+        }
+    }
+
+    public static int partition(int array[], int l, int h)
+    {
+        int pivot = array[l];
+        int i = l;
+        int j = h;
+
+        while(i < j)
+        {
+            while(i<=h && array[i]<=pivot)
+                i++;
+
+            while(array[j] > pivot)
+                j--;
+            
+            if(i<j)
+                swap(array, i, j);
+        }
+
+        swap(array, l ,j);
+        return j;
+    }
+
+    public static void swap(int a[], int i, int j)
+    {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+}
