@@ -1,0 +1,28 @@
+import java.util.HashSet;
+
+class classname
+{
+    public static void main(String args[])
+    {
+        HashSet<Integer> result = new HashSet<>();
+
+        result.add(234);
+        result.add(456);
+        result.add(765);
+        result.add(223);
+        result.add(111);
+
+        result.remove(765);
+
+        System.out.println(result.contains(223));
+        boolean res = result.contains(888);
+        System.out.println(res);
+
+        System.out.println(result.size());
+
+        System.out.println(result);
+
+        for(int x: result)
+            System.out.print(x + "  ");
+    }
+}
