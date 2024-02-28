@@ -1,0 +1,28 @@
+import java.util.HashMap;
+import java.util.Map;
+
+class classname
+{
+    public static void main(String[] args) 
+    {
+        HashMap<Integer, String> result = new HashMap<>();
+        
+        result.put(3, "Book");
+        result.put(7, "Pen");
+        result.put(9, "Pencil");
+        result.put(5, "Horse");
+        result.put(99, "Bench");
+        result.put(2, "Board");
+
+        result.remove(5);
+
+        System.out.println(result.containsKey(9));
+
+        System.out.println(result);
+
+        for(Map.Entry<Integer, String> i : result.entrySet())
+        {
+            System.out.println(i.getKey() + "   " + i.getValue());
+        }
+    }
+}
