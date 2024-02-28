@@ -1,0 +1,27 @@
+import java.util.HashMap;
+import java.util.*;
+
+class classname
+{
+    public static void main(String[] args) 
+    {
+        int arr[] = {15, 16, 27, 28, 27, 15, 15};
+        int n = arr.length;
+
+        System.out.println(n);
+        System.out.println(Arrays.toString(arr));
+        System.out.println(unique(arr, n));
+    }
+
+    public static int unique(int a[], int n)
+    {
+        HashSet<Integer> hs = new HashSet<>();
+
+        for(int i=0; i<n; i++)
+            hs.add(a[i]);
+
+        System.out.println(hs);
+
+        return hs.size();
+    }
+}
