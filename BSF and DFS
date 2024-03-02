@@ -1,0 +1,76 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class classname 
+{
+    static void bfs(int vtx, int[][] A, int n)
+    {
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[n];
+
+        System.out.print("BFS from Vertex " + vtx + ": ");
+        queue.add(vtx);
+        visited[vtx] = true;
+
+        while (!queue.isEmpty()) 
+        {
+            int u = queue.poll();
+            System.out.print(u + " ");
+
+            for (int v = 1; v < n; v++) 
+            {
+                if (A[u][v] == 1 && !visited[v]) 
+                {
+                    queue.add(v);
+                    visited[v] = true;
+                }
+            }
+        }
+        System.out.println();
+    }
+
+
+    static void dfs(int start, int[][] A) 
+    {
+        boolean[] visited = new boolean[A.length];
+
+        System.out.print("DFS from Vertex " + start + ": ");
+        dfsUtil(start, A, visited);
+        System.out.println();
+    }
+
+    static void dfsUtil(int u, int[][] A, boolean[] visited) 
+    {
+        visited[u] = true;
+        System.out.print(u + " ");
+
+        for (int v = 1; v < visited.length; v++) 
+        {
+            if (A[u][v] == 1 && !visited[v]) 
+            {
+                dfsUtil(v, A, visited);
+            }
+        }
+    }
+
+
+    public static void main(String[] args) 
+    {
+        int[][] A = 
+        {
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 1, 1, 1, 0, 0, 0, 0},
+                {0, 1, 0, 1, 0, 0, 0, 0, 0},
+                {0, 1, 1, 0, 1, 1, 0, 0, 0},
+                {0, 1, 0, 1, 0, 1, 0, 0, 0},
+                {0, 0, 0, 1, 1, 0, 1, 1, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0}
+        };
+
+        bfs(1, A, A.length);
+        bfs(4, A, A.length);
+        dfs(4, A);
+    }
+}
