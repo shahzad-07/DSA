@@ -1,0 +1,79 @@
+import java.util.*;
+
+public class classname 
+{
+    public static void main(String[] args) 
+    {
+        int[][] graph = 
+        {
+            {0, 2, 0, 6, 0},
+            {2, 0, 3, 8, 5},
+            {0, 3, 0, 0, 7},
+            {6, 8, 0, 0, 9},
+            {0, 5, 7, 9, 0}
+        };
+
+        kruskalMST(graph);
+    }
+
+
+    public static void kruskalMST(int[][] graph) 
+    {
+        int V = graph.length;
+        List<int[]> edges = new ArrayList<>();
+
+        // Construct a list of edges from the adjacency matrix
+        for (int i = 0; i < V; i++) 
+        {
+            for (int j = i + 1; j < V; j++) 
+            {
+                if (graph[i][j] != 0) 
+                {
+                    edges.add(new int[]{i, j, graph[i][j]});
+                }
+            }
+        }
+
+        // Sort edges by weight
+        edges.sort(Comparator.comparingInt(a -> a[2]));
+
+        // Initialize parent array for union-find
+        int[] parent = new int[V];
+        for (int i = 0; i < V; i++) 
+        {
+            parent[i] = i;
+        }
+
+        // Initialize MST weight
+        int mstWeight = 0;
+
+        // Perform Kruskal's algorithm
+        System.out.println("Edges of Minimum Spanning Tree:");
+        for (int[] edge : edges) 
+        {
+            int u = edge[0];
+            int v = edge[1];
+            int weight = edge[2];
+
+            int parentU = find(parent, u);
+            int parentV = find(parent, v);
+
+            if (parentU != parentV) 
+            {
+                System.out.println(u + " - " + v + " : " + weight);
+                mstWeight += weight;
+                parent[parentV] = parentU; // Union operation
+            }
+        }
+
+        System.out.println("Total weight of MST: " + mstWeight);
+    }
+
+    // Find operation for union-find
+    public static int find(int[] parent, int i) 
+    {
+        if (parent[i] == i)
+            return i;
+        return find(parent, parent[i]);
+    }
+}
