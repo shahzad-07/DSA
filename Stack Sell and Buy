@@ -1,0 +1,42 @@
+//Best Time to buy and sell Stack
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+
+        int a[] = {7, 3, 2, 3, 6, 3, 1};
+        int n = a.length;
+
+        if(n<2)
+        {
+            System.out.println("Invalid");
+        }
+
+        int buy = a[0];
+        int maxprofit = 0;
+
+        for(int i=1; i<n; i++)
+        {
+            if(a[i] < buy)
+            {
+                buy = a[i];
+            }
+            else
+            {
+                int cur = a[i]-buy;
+                maxprofit = Math.max(cur, maxprofit);
+            }
+        }
+        System.out.println(maxprofit);
+
+
+
+
+
+        sc.close();
+    }
+}
