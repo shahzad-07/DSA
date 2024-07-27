@@ -1,0 +1,36 @@
+//Kth largest element in an array
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+
+        int a[] = {13, 2, 3, 6, 8, 22};
+
+        Klargest(a);
+
+
+
+
+
+        sc.close();
+    }
+
+    public static void Klargest(int a[])
+    {
+        int k = 3;
+        Arrays.sort(a);
+        int n = a.length;
+
+        int b[] = new int[n];
+        for(int i=0, j=n-1; i<n; i++, j--)
+        {
+            b[j] = a[i];
+        }
+
+        System.out.println(b[k-1]);
+    }
+}
