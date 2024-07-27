@@ -1,0 +1,43 @@
+//Find a pair in Array whose sum is k
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+            Scanner sc = new Scanner(System.in);
+            
+            int a[] = {8, 9, 11, 5, 2, 3, 3, 11, 5, 10, 15, 11, 3};
+            Arrays.sort(a);
+
+            int i=0;
+            int j=a.length-1;
+
+            int k = 10;
+
+            while(i<=j)
+            {
+                if(a[i] + a[j] == k)
+                {
+                    System.out.println(a[i] + " " + a[j] + "  " + k);
+                    i++;
+                    j--;
+                }
+                else if(a[i] + a[j] < k)
+                {
+                    i++;
+                }
+                else
+                {
+                    j--;
+                }
+            }
+
+
+
+
+
+            sc.close();
+    }
+}
