@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+            Scanner sc = new Scanner(System.in);
+            
+            int a[] = {2, 3, 5, 8, 9, 10};
+
+            Arrays.sort(a);
+
+            for(int i=1; i<a.length; i++)
+            {
+                int cur = a[i];
+                int pre = a[i-1];
+
+                if(cur-pre > 1)
+                {
+                    for(int j=pre+1; j<cur; j++)
+                    {
+                        System.out.println(j);
+                    }
+                }
+            }
+
+
+
+
+            sc.close();
+    }
+}
