@@ -1,0 +1,48 @@
+//Min number of merge required to make an array Palindrome
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        int a[] = {1, 2, 3, 5, 10, 1};
+
+        int res = mergepali(a);
+        System.out.println(res);
+    }
+
+    public static int mergepali(int a[])
+    {
+        int n = a.length;
+
+        int left = 0;
+        int right = n-1;
+        int count = 0;
+
+        while(left <= right)
+        {
+            if(a[left] == a[right])
+            {
+                left++;
+                right--;
+            }
+            else if(a[left] < a[right])
+            {
+                a[left+1] = a[left] + a[left+1];
+                left++;
+                count++;
+            }
+            else
+            {
+                a[right-1] = a[right] + a[right-1];
+                right--;
+                count++;
+            }
+        }
+
+
+
+        return count;
+    }
+}
