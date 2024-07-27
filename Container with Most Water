@@ -1,0 +1,44 @@
+//Container with Most Water
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+            Scanner sc = new Scanner(System.in);
+            
+            int a[] = {2, 3, 5, 1, 4, 10};
+            int n = a.length;
+
+            int i = 0;
+            int j = n-1;
+
+            int max = 0;
+            while(i<j)
+            {
+                int h = Math.min(a[i], a[j]);
+                int w = j-1;
+                int area = h*w;
+
+                max = Math.max(area, max);
+
+                if(a[i] < a[j])
+                {
+                    i++;
+                }
+                else
+                {
+                    j--;
+                }
+            }
+            System.out.println("Total water content is : " + max);
+            
+
+
+
+
+
+            sc.close();
+    }
+}
