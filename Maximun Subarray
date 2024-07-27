@@ -1,0 +1,30 @@
+//Maximun Subarray
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+            Scanner sc = new Scanner(System.in);
+            
+            int a[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+
+            int max = a[0];
+            int tot = a[0];
+
+            for(int i=1; i<a.length; i++)
+            {
+                max = Math.max(a[i], max+a[i]);
+                tot = Math.max(max, tot);
+            }
+            
+            System.out.println("Max Subarray is : " + tot);
+
+
+
+
+
+            sc.close();
+    }
+}
