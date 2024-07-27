@@ -1,0 +1,36 @@
+//Longest Subarray with sum devisible by K
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        int a[] = {2, 7, 6, 1, 4, 5};
+        int k = 3;
+
+        int res = subarray(a, k);
+        System.out.println(res);
+    }
+
+    public static int subarray(int a[], int k)
+    {
+        int n = a.length;
+        int maxlen = 0;
+
+        for(int i=0; i<n; i++)
+        {
+            int sum = 0;
+            for(int j=i; j<n; j++)
+            {
+                sum = sum + a[j];
+                if(sum % k == 0)
+                {
+                    maxlen = Math.max(maxlen, (j-i)+1);
+                }
+            }
+        }
+
+        return maxlen;
+    }
+}
