@@ -1,0 +1,21 @@
+//Count number of Words in a String
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc  = new Scanner(System.in);
+        String s = sc.nextLine();
+
+        String word[] = s.split("\\s+");
+        int count = word.length;
+
+        System.out.println(count);
+
+
+        sc.close();
+    }
+
+}
