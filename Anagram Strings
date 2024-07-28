@@ -1,0 +1,29 @@
+//Checking if two Strings are Anagram
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        String str1 = "Race  ";
+        String str2 = "Care";
+
+        str1 = str1.toLowerCase().trim();
+        str2 = str2.toLowerCase().trim();
+
+        char ch1[] = str1.toCharArray();
+        char ch2[] = str2.toCharArray();
+
+        Arrays.sort(ch1);
+        Arrays.sort(ch2);
+
+        String sorted1 = new String(ch1);
+        String sorted2 = new String(ch2);
+
+        boolean ans = sorted1.equals(sorted2);
+        System.out.println(ans);
+
+
+    }
+}
