@@ -1,0 +1,35 @@
+//Number of Vowels and Consonents
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc  = new Scanner(System.in);
+        String s = sc.next();
+        s = s.toUpperCase();
+        char str[] = s.toCharArray();
+
+        int vowel = 0;
+        int conso = 0;
+
+        for(int i=0; i<str.length; i++)
+        {
+            if(str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U')
+            {
+                vowel++;
+            }
+            else if(Character.isLetter(str[i]))
+            {
+                conso++;
+            }
+        }
+
+        System.out.println(vowel + "    " + conso);
+
+
+        sc.close();
+    }
+
+}
