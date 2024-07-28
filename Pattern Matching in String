@@ -1,0 +1,32 @@
+//Pattern Matching in String
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        String str = "Hello world, this is java";
+        String val = "java";
+
+        int n = str.length();
+        int m = val.length();
+
+        int j=0;
+
+        for(int i=0; i<=n-m; i++)
+        {
+            for(j=0; j<m; j++)
+            {
+                if(str.charAt(i+j) != val.charAt(j))
+                {
+                    break;
+                }
+            }
+            if(j==m)
+            {
+                System.out.println("Pattern Found at : " + i);
+            }
+        }
+    }
+}
