@@ -1,0 +1,35 @@
+//Reverse a String
+
+import java.util.*;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        String str = "Hello";
+
+        char ch[] = str.toCharArray();
+        int left = 0;
+        int right = ch.length-1;
+
+        while(left<right)
+        {
+            char t = ch[left];
+            ch[left] = ch[right];
+            ch[right] = t;
+
+            left++;
+            right--;
+        }
+
+        String rev = new String(ch);
+
+        System.out.println(rev);
+        for(int i=0; i<ch.length; i++)
+        {
+            System.out.println(ch[i]);
+        }
+
+
+    }
+}
