@@ -1,0 +1,25 @@
+//Remove Consecutive Characters
+
+class Main
+{
+    public static void main(String args[])
+    {
+        String str = "aabbaaa";
+
+        char ch[] = str.toCharArray();
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(ch[0]);
+        for(int i=1; i<ch.length; i++)
+        {
+            if(ch[i] != ch[i-1])
+            {
+                sb.append(ch[i]);
+            }
+        }
+
+        String fin = sb.toString();
+        System.out.println(fin);
+
+    }
+}
